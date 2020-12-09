@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="UTC-8">
+<html>
+	<head>
+		<title>AMPP</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+	</head>
+	
+	<body class="homebody">
+		<div class="navbg">
+			<nav>
+				<br>
+					<center>Akatsuki All Modes PP</center>
+					<!--<li class="navul"><a href="{{ url }}/lb">Leaderboard</a></li>--> 
+					<!--<li class="navul"><a href="aappabout.html">About</a></li>--> 
+					{% if global_message %}
+					<br>
+					<center style="color: white;">{{ global_message }}</center>
+					<br>
+					{% else %}
+					{% endif %}
+				</nav>
+			<br>
+			<br>
+			<center><a href="{{ url }}/lb?name=left"><button class="bbutton"><</button></a> <a href="{{ url }}/lb?name=right"><button class="bbutton">></button></a><br>
+			<a href="{{ url }}/lb"><button class="bbutton">reset</button></a></center>
+		</div>
+		<br>
+		<div class="body">
+			<table class="lbheader">
+				<tr>
+					<th>Rank</th>
+					<th>Player</th>
+					<th>Performance</th>
+					<th>Accuracy</th>
+					<th>Playcount</th>
+				</tr>
+			</table>
+			<table class="lbpanel">
+				<tr>
+					{% for player in leaderboard %}
+					<td>#{{ player[0] }}</td>
+					<td><a href="https://akatsuki.pw/u/{{ player[1] }}">{{ player[1] }}</a></td>
+					<td>{{ player[3] }}</td>
+					<td>100%</td>
+					<td>{{ player[2] }} (lvl 100)</td>
+					{% endfor %}
+				</tr>
+			</table>	
+	</div>
+	</body>
+
+</html>
